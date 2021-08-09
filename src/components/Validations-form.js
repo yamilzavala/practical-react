@@ -1,5 +1,5 @@
 import React from 'react';
-import {uuidv4} from 'uuidv4'
+import {v4 as uuidv4} from 'uuid';
 
 //initial state
 const initialState = {
@@ -104,8 +104,8 @@ export default class ValidationsForm extends React.Component {
                     name="select" 
                     value={this.state.select}
                     onChange={this.handleEvent}>
-                        {itemsSelect.map((item,idx) =>                             
-                            <option key={idx}>{item}</option>
+                        {itemsSelect.map((item) =>                             
+                            <option key={uuidv4()}>{item}</option>
                         )}                       
                     </select>
                     <br/>

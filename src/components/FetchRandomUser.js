@@ -1,33 +1,40 @@
 import React from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 export default class FetchRanfomUser extends React.Component {
     state = {
-        person: null,
+        persons: null,
         loading: false
     }
 
     async componentDidMount() {
-        const url = 'https://api.randomuser.me/';
+        const url = 'https://api.randomuser.me/?results=5';
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({person: data.results[0], loading: false});
-        console.log(data.results[0]);
+        this.setState({persons: data.results, loading: false});
+        console.log(data.results);
     }
     
     render() {
         if (this.state.loading) {
             return <div>Loading...</div>
         }
-        if (!this.state.person) {
-            return <div>There is not person</div>
+        if (!this.state.persons) {
+            return <div>There is not persons</div>
         }
 
         return(
             <>
-                <img src={this.state.person.picture.large}/>
-                <p>{this.state.person.name.title}</p>
-                <p>{this.state.person.name.first}</p>
-                <p>{this.state.person.name.last}</p>
+             <div>
+                {this.state.persons.map(person => (      
+                    <div key={uuidv4()}>        
+                        <img src={person.picture.large}/>
+                        <p>{person.name.title}</p>
+                        <p>{person.name.first}</p>
+                        <p>{person.name.last}</p>                
+                    </div>
+                ))}                
+             </div>
             </>
         )
     }
