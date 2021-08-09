@@ -1,7 +1,7 @@
 import React from 'react';
 import {v4 as uuidv4} from 'uuid';
 
-export default class FetchRanfomUser extends React.Component {
+export default class FetchUser extends React.Component {
     state = {
         persons: null,
         loading: false

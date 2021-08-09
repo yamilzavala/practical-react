@@ -1,12 +1,14 @@
 import './App.css';
 import ValidationsForm from './components/Validations-form';
-import FetchRanfomUser from './components/FetchRandomUser';
+import FetchUser from './components/FetchRandomUser';
+import LiftingState from './components/LiftingState'
 
 function App() {
   return (
     <div className="App">
       {/* <ValidationsForm/> */}
-      <FetchRanfomUser/>
+      {/* <FetchUser/> */}
+      <LiftingState/>
     </div>
   );
 }
