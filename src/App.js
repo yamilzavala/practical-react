@@ -5,6 +5,7 @@ import LiftingState from './components/LisftingState/LiftingState'
 import TodoList from './components/Todo/TodoList';
 import Wrapper from './components/Hooks/useState/Wrapper';
 import WrapperUseEffect from './components/Hooks/useEffect/WrapperUseEffect'
+import WrapperUseRef from './components/Hooks/useRef/WrapperUseFeff'
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       {/* <LiftingState/> */}
       {/* <TodoList/> */}
       {/* <Wrapper/> */}
-      <WrapperUseEffect/>
+      {/* <WrapperUseEffect/> */}
+      <WrapperUseRef/>
     </div>
   );
 }
