@@ -6,7 +6,7 @@
 5.Filter all active/complete/all
 6.Delete todo
 7.Delete all completes
-7.1.Only show if atleast one is complete
+    7.1.Only show if atleast one is complete
 8.Button to toggle on/off
 */
 
@@ -18,7 +18,9 @@ import Todo from './Todo'
 export default class TodoList extends React.Component {
 
     state = {
-        todos: []
+        todos: [],
+        todosToShow: 'all',
+        toggleAllComplete: true
     }
 
     //add
@@ -32,6 +34,13 @@ export default class TodoList extends React.Component {
     removeTodo = (id) => {
         this.setState({
             todos: this.state.todos.filter(todo => todo.id !== id)
+        });
+    }
+    
+    removeCompletesTodo = () => {
+        console.log('delete completes');
+        this.setState({
+            todos: this.state.todos.filter(todo => !todo.complete)
         });
     }
 
@@ -52,21 +61,54 @@ export default class TodoList extends React.Component {
     }
 
     //filters
+    whatToShow = (filterText) => {
+        console.log(filterText);
+       this.setState({
+           todosToShow: filterText
+        })       
+    }
+
+    //toggle
+    toggleTodos = () => {
+        this.setState({toggleAllComplete: !this.state.toggleAllComplete});
+        console.log('toggle', this.state.toggleAllComplete);
+        this.setState({ 
+            todos: this.state.todos.map(todo => 
+                ({...todo, complete: this.state.toggleAllComplete})
+                )
+        })
+    }
 
     render() {
+        let todosToShow = [];
+        if (this.state.todosToShow === 'all') todosToShow = this.state.todos;
+        if (this.state.todosToShow === 'completes') todosToShow = this.state.todos.filter(todo => todo.complete);
+        if (this.state.todosToShow === 'actives') todosToShow = this.state.todos.filter(todo => !todo.complete); 
 
         return(
             <>
                 <TodoForm addTodo={this.addTodo}/>
-                {this.state.todos.map(todo => (
+                {todosToShow.map(todo => (
                     <div key={shortid.generate()}> 
                        <Todo 
                        todo={todo}
-                       markAsComplete={() => this.markTodoAsComplete(todo.id)}/>
-                        {/* <button onClick={this.removeTodo(todo.id)}>x</button> */}
-                    </div>                    
+                       markAsComplete={() => this.markTodoAsComplete(todo.id)}
+                       removeTodo={() => this.removeTodo(todo.id)}/>                       
+                    </div>                                      
                 ))
                 }
+               
+                Actives todos:
+                {this.state.todos.filter(todo => !todo.complete).length}<br/>
+
+                <button onClick={() => this.whatToShow('all')}>Show all</button>  <br/>
+                <button onClick={() => this.whatToShow('actives')}>Show actives</button>   <br/>
+                <button onClick={() => this.whatToShow('completes')}>Show completes</button>  <br/>
+                <button onClick={this.toggleTodos}>Toggle state</button>  <br/>
+                {this.state.todos.some(todo => todo.complete) ?
+                    <button onClick={this.removeCompletesTodo}>Delete all completes</button>
+                    : null
+                }                
             </>
         )
     }
