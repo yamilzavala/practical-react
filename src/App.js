@@ -6,6 +6,7 @@ import TodoList from './components/Todo/TodoList';
 import Wrapper from './components/Hooks/useState/Wrapper';
 import WrapperUseEffect from './components/Hooks/useEffect/WrapperUseEffect'
 import WrapperUseRef from './components/Hooks/useRef/WrapperUseFeff'
+import WrapperUseContext from './components/Hooks/useContext/WrapperUseContext';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       {/* <TodoList/> */}
       {/* <Wrapper/> */}
       {/* <WrapperUseEffect/> */}
-      <WrapperUseRef/>
+      {/* <WrapperUseRef/> */}
+      <WrapperUseContext/>
     </div>
   );
 }
