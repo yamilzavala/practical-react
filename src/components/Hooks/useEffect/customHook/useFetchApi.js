@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 //custom hook for get data from api
 export const useFetchData = url => {
-    const [state, setState] = useState({data: '', loading: false});
+    const [state, setState] = useState({data: null, loading: false});
 
     useEffect(() => {
         setState({data: '', loading: true});
@@ -10,7 +10,6 @@ export const useFetchData = url => {
          .then( response => response.text())    
          .then(dataText => {
             setState({data: dataText, loading: false});
-             console.log(dataText);
          })
          .catch(err => err);
     }, [url]);

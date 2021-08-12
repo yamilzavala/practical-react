@@ -8,6 +8,7 @@ import WrapperUseEffect from './components/Hooks/useEffect/WrapperUseEffect'
 import WrapperUseRef from './components/Hooks/useRef/WrapperUseFeff'
 import WrapperUseContext from './components/Hooks/useContext/WrapperUseContext';
 import WrapperCallback from './components/Hooks/useCallback/WrapperCallBack'
+import WrapperUseMemo from './components/Hooks/useMemo/WrapperUseMemo';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       {/* <WrapperUseEffect/> */}
       {/* <WrapperUseRef/> */}
       {/* <WrapperUseContext/> */}
-      <WrapperCallback/>
+      {/* <WrapperCallback/> */}
+      <WrapperUseMemo/>
     </div>
   );
 }
