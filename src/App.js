@@ -1,6 +1,7 @@
 import './App.css';
 import ValidationsForm from './components/Foms/Validations-form';
 import FetchUser from './components/FetchApi/FetchRandomUser';
+import FetchUserApi from './components/Hooks/useEffect/FetchUserApi';
 import LiftingState from './components/LisftingState/LiftingState'
 import TodoList from './components/Todo/TodoList';
 import Wrapper from './components/Hooks/useState/Wrapper';
@@ -26,7 +27,8 @@ function App() {
       {/* <WrapperCallback/> */}
       {/* <WrapperUseMemo/> */}
       {/* <WrapperUseReducer/> */}
-      <UseReducerTodo/>
+      {/* <UseReducerTodo/> */}
+      <FetchUserApi/>
     </div>
   );
 }
